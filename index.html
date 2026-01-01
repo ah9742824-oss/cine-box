@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +13,8 @@
   --text: #e5e7eb;
   --muted: #9ca3af;
   --watch-bg: linear-gradient(135deg,#6366f1,#22c55e);
+  --scroll-bg: rgba(99,102,241,0.2);
+  --scroll-thumb: linear-gradient(180deg,#6366f1,#22c55e);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Poppins',sans-serif;background:radial-gradient(circle at top,#1e293b,var(--bg));color:var(--text);}
@@ -33,224 +34,49 @@ nav button.active, nav button:hover, .genres-filter button.active, .genres-filte
 .info{padding:14px;}
 .title{font-size:15px;font-weight:600;margin-bottom:6px;}
 .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);}
-.badge{background:rgba(99,102,241,0.15);color:var(--primary);padding:4px 10px;border-radius:999px;font-size:12px;}
+.badge{background:rgba(99,102,241,0.15);color:var(--primary);padding:4px 10px;border-radius:999px;font-size:12px;}/* Modal */ #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);align-items:center;justify-content:center;z-index:100;transition:opacity 0.3s;opacity:0;} #modal.show{display:flex;opacity:1;} #modalContent{ background:#020617; width:90%; max-width:900px; max-height:90vh; border-radius:20px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; } #modalContent img{ width:100%; height:100%; object-fit:cover; } #modalContent > div{padding:28px;overflow:visible;} #modalContent h2{font-size:26px;margin-bottom:10px;} #modalContent p{color:#e5e7eb;line-height:1.6;} #modalContent span{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(99,102,241,.15);color:#6366f1;margin-bottom:10px;} #modalContent #modalGenres{margin-top:10px;color:#9ca3af;font-size:14px;} #watchButton{ display:inline-block; margin-top:20px; background:var(--watch-bg); padding:12px 28px; border-radius:999px; color:white; text-decoration:none; font-weight:700; font-size:15px; transition:0.3s; box-shadow:0 6px 15px rgba(0,0,0,0.3); } #watchButton:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.5);} #modalContent button{margin-top:12px;background:linear-gradient(135deg,#6366f1,#22c55e);border:none;padding:10px 26px;border-radius:999px;color:white;cursor:pointer;transition:0.3s;font-weight:600;} #modalContent button:hover{opacity:0.9;}
 
-/* Modal */
-#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);align-items:center;justify-content:center;z-index:100;transition:opacity 0.3s;opacity:0;}
-#modal.show{display:flex;opacity:1;}
-#modalContent{background:#020617;width:90%;max-width:900px;border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transform:translateY(-20px);transition:transform 0.3s;}
-#modal.show #modalContent{transform:translateY(0);}
-#modalContent img{width:100%;height:100%;object-fit:cover;}
-#modalContent div{padding:28px;}
-#modalContent h2{font-size:26px;margin-bottom:10px;}
-#modalContent p{color:#e5e7eb;line-height:1.6;}
-#modalContent span{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(99,102,241,.15);color:#6366f1;margin-bottom:10px;}
-#modalContent #modalGenres{margin-top:10px;color:#9ca3af;font-size:14px;}
-#watchButton{
-  display:inline-block;
-  margin-top:20px;
-  background:var(--watch-bg);
-  padding:12px 28px;
-  border-radius:999px;
-  color:white;
-  text-decoration:none;
-  font-weight:700;
-  font-size:15px;
-  transition:0.3s;
-  box-shadow:0 6px 15px rgba(0,0,0,0.3);
-}
-#watchButton:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.5);}
-#modalContent button{margin-top:12px;background:#6366f1;border:none;padding:10px 22px;border-radius:12px;color:white;cursor:pointer;transition:0.3s;}
-#modalContent button:hover{opacity:0.9;}
-@media(max-width:600px){header{padding:20px;}.container{padding:0 20px 30px;}.card .poster{height:200px;}#modalContent{grid-template-columns:1fr;}}
+/* Scroll داخلي للوصف */ #modalDesc{ max-height: 220px; overflow-y: auto; padding-right: 6px; scrollbar-width: thin; scrollbar-color: var(--primary) transparent; } #modalDesc::-webkit-scrollbar{width:6px;} #modalDesc::-webkit-scrollbar-thumb{background: var(--scroll-thumb); border-radius:10px;} #modalDesc::-webkit-scrollbar-track{background: var(--scroll-bg);}
 
+/* Scroll ناعم */ html {scroll-behavior: smooth;}
 
+/* Footer */ .site-footer { background-color: #050f28; color: #f0f0f0; text-align: center; padding: 12px 0; margin-top: 30px; border-top-left-radius: 25px; border-top-right-radius: 25px; } .footer-content {max-width:900px;margin:auto;} .footer-links {list-style:none;padding:0;margin:8px 0 0;display:flex;justify-content:center;gap:18px;} .footer-links a {color:#ffcc00;text-decoration:none;font-weight:bold;} .footer-links a:hover {color:#ffd633;text-decoration:underline;} .site-footer p {font-size:14px;color:#ccc;margin:8px 0 0;}
 
+/* Ratings */ .rating {display:flex;align-items:center;gap:4px;margin:6px 0;} .rating span {font-size:15px;color:#374151;} .rating .filled {color:#fbbf24;text-shadow:0 0 6px rgba(251,191,36,0.6);} .rating-number {font-size:13px;color:#9ca3af;margin-left:6px;}
 
+/* Responsive */ @media(max-width:600px){ header{padding:20px;} .container{padding:0 20px 30px;} .card .poster{height:220px;} #modalContent{grid-template-columns:1fr;max-height:95vh;} #modalContent img{height:220px;} .rating span{font-size:18px;} .rating-number{font-size:14px;} } </style>
 
-
-
-.site-footer {
-  background-color: #050f28;   /* أزرق غامق أنيق */
-  color: #f0f0f0;              /* نص فاتح */
-  text-align: center;
-  padding: 12px 0;             /* ارتفاع أقل */
-  margin-top: 30px;
-
-  /* الأطراف الدائرية */
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-}
-
-.footer-content {
-  max-width: 900px;
-  margin: auto;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 8px 0 0;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-.footer-links a {
-  color: #ffcc00;              /* لون ذهبي متناسق مع الأزرق */
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.footer-links a:hover {
-  color: #ffd633;              /* درجة أفتح عند المرور */
-  text-decoration: underline;
-}
-
-
-.site-footer p {
-  font-size: 14px;
-  color: #ccc;          /* لون رمادي فاتح */
-  margin: 8px 0 0;
-}
-
-
-</style>
 </head>
-<body>
-
-<header>
-<div class="logo">CineBox</div>
-<nav>
-<button class="active" onclick="filter('all', this)">All</button>
-<button onclick="filter('movie', this)">Movies</button>
-<button onclick="filter('series', this)">Series</button>
-</nav>
-<div>
-<button id="toggleGenres">Show Genres</button>
-<div class="genres-filter" id="genresContainer" style="margin-top:10px;display:none;"></div>
-</div>
-</header>
-
-<div class="container">
-<div class="section-title">Featured</div>
-<div id="grid" class="grid"></div>
-</div>
-
-<!-- Modal -->
-<div id="modal">
-<div id="modalContent">
-<img id="modalImage" />
-<div>
-<h2 id="modalTitle"></h2>
-<p id="modalYear"></p>
-<span id="modalType"></span>
-<p id="modalDesc"></p>
-<p id="modalGenres"></p>
-<a id="watchButton" href="#" target="_blank">مشاهدة</a>
-<button onclick="closeModal()">Close</button>
-</div>
-</div>
-</div>
-
-<script>
-let items = [
-  
-  
-  
-  { title:"عالمها الخاص",
-  type:"series",
-  year:2019,
-  description:"تحاول شابة تعمل كأمينة لمتحف فنّي إخفاء هوايتها كمعجبة سرّية شديدة الشغف بأحد نجوم البوب الكوري عن مديرها الجديد، لكن حياتها الماضية تتكشّف.",
-  image:"https://media.themoviedb.org/t/p/w300_and_h450_face/cVm3QHItG5GW9uHCMSeFWajMFBy.jpg",
-  watchLink:"https://topcinema.media/%d9%85%d8%b3%d9%84%d8%b3%d9%84-%d8%b9%d8%a7%d9%84%d9%85%d9%87%d8%a7-%d8%a7%d9%84%d8%ae%d8%a7%d8%b5-her-private-life-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-1-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/watch/",
-  genres:["Romance","Drama","comedy"   , "korean"] },
-  
-  
-  { title:"What's Wrong with Secretary Kim",
-  type:"series",
-  year:2018,
-  description:"تدير عائلة لي يونغ شركة كبيرة يعمل فيها لي يونغ جون كنائب للرئيس. يُعرف بثرائه وذكائه ووسامته، ولكنه معروف أيضًا بغروره الشديد. تتخذ سكرتيرته كيم مي سو، التي تعمل لديهم منذ سنوات عديدة، قرارًا يصدمه....",
-    image:"https://wallpaperaccess.com/full/2615396.jpg" ,
-  watchLink:"https://wetv.vip/ar/play/4atd5mcgi2uwnvr/u0033d3i9b3-%D9%85%D8%A7_%D8%AE%D8%B7%D8%A8_%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D8%AA%D9%8A%D8%B1%D9%87_%D9%83%D9%8A%D9%85_%7C_%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9_1",
-  genres:["Drama","Romance","comedy"    , "korean"] },
-  
-  
-  
-    { title:"Because This Is My First Life",
-    type:"series",
-    year:2025,
-    description:"جي هو امرأة عزباء، تعمل مساعدةً في كتابة المسلسلات الدرامية. هي امرأة قوية وعازمة. لسوء الحظ، عليها أن تغادر منزلها وتبحث عن مكان آخر للعيش فيه. يساعدها أصدقاؤها في إيجاد شريكة سكن، وهذه الشريكة هي سي هي..",
-    image:"https://i.mydramalist.com/w06zkf.jpg" ,
-   watchLink:"https://www.arab-drama.me/watch-888/because-this-is-my-first-life/1",
-   genres:["Drama","Romance","comedy"   , "korean"] },
-   
-
-
-
-
-  
-  {  title:"ملكة الاحتيال",
-    type: "series",
-    year: 2023,
-    description: "المرأة الذكية التي تصبح محتالة بارعة. تتعاون مع جيمس وغو-هو، في فريق ثلاثي من المحتالين، لكشف المحتالين والاستيلاء على مكاسبهم غير المشروعة.",
-    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/confidence-q.jpeg",
-       watchLink: "https://ww1.asia2tv.pw/%D9%85%D9%84%D9%83%D8%A9-%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D9%84-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
-       genres:["Crime", "Drama", "Thriller"     , "korean"] },
- 
-  
-   {
-    title: "هل تتزوجني ؟",
-    type: "series",
-    year: 2025,
-    description: "لقصة حول رجل وامرأة يدخلان في زواج مزيف محفوف بالمخاطر لمدة 90 يومًا للفوز بمنزل فاخر",
-    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-hl-ttzwjny-would-you-marry-me.jpg",
-       watchLink: "https://ww1.asia2tv.pw/%D9%87%D9%84-%D8%AA%D8%AA%D8%B2%D9%88%D8%AC%D9%86%D9%8A%D8%9F-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
-      genres: ["Romance", "Drama"  , "korean"]  },
-
- 
- 
- 
-   {
-    title: "A Hundred Memories",
-    type: "series",
-    year: 2025,
-    description: "امرأتان تعملان كمضيفتين في الحافلات في كوريا خلال الثمانينيات تنشأ بينهما صداقة عميقة بينما تخوضان رحلة في الحب والأحلام والنمو الشخصي. إحداهما تكافح مع دوار الحركة لتتمكن من إعالة أسرتها، بينما الأخرى تبحث عن الهروب من ماضيها المضطرب.",
-    image: " https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-a-hundred-memories-my-t-dhkry.jpeg",
-       watchLink: "https://ww1.asia2tv.pw/%D9%85%D8%A6%D8%A9-%D8%B0%D9%83%D8%B1%D9%89-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
-      genres: ["Romance", "Drama" , "korean" ]  },
- 
-
- 
- 
-  
-    {
-    title: "Buk-geuk-seong",
-    type: "series",
-    year: 2022,
-    description: "يقوم مونجو، السفير السابق، وسانهو، العميل السري، بالتحقيق في هجوم قد يزعزع استقرار شبه الجزيرة الكورية، ويكشفان عن مؤامرة خطيرة تهدد السلام والأمن الإقليميين..",
-    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-tempest-mslsl-al-asft-alkwryal.jpeg",
-    genres: ["Action", "Historical", "Drama" , "korean"],
-    watchLink: "https://ww1.asia2tv.pw/%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%81%D8%A9-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" 
-  },
-  {
-    title: "Melo Movie",
-    type: "series",
-    year: 2024,
-    description: "يقع عاشق أفلام في غرام مُخرجة طامحة، وتشتعل بينهما علاقة رومانسية سرعان ما ينطفئ لهيبها... ولكن هل يجد هذا الحب سبيلًا إلى قلبيهما مجددًا عندما تتلاقى خطاهما مرة أخرى؟",
-    image: "https://scontent.fcai1-2.fna.fbcdn.net/v/t39.30808-6/493979256_1266112278852403_477336392164923332_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MF528Ny40DUQ7kNvwGWv3MJ&_nc_oc=AdmnrgJ0rTpfRQKOVtRcpKqJi54jZkpAiwWwhoGgANQbyvOf-hQYXeHmAPDgkdWCPlA&_nc_zt=23&_nc_ht=scontent.fcai1-2.fna&_nc_gid=1KSDIQ-U-c3FS6ygVpORHw&oh=00_AfnXrjEsjp-KXjEdDnC8QzCFeq_hbxOeKOkRJPXtw-Jhiw&oe=695AC094",
-    genres: ["Romance", "Drama" , "korean"],
-    watchLink: "https://topcinema.media/%d9%85%d8%b3%d9%84%d8%b3%d9%84-%d8%ad%d8%a8-%d9%81%d9%8a-%d8%b9%d8%a7%d9%84%d9%85-%d8%a7%d9%84%d8%a7%d9%81%d9%84%d8%a7%d9%85-melo-movie-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-1-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/watch/" 
-  } ,
- 
-  
-  
-   
-   
- 
- 
-];
-
+<body><header>
+  <div class="logo">CineBox</div>
+  <nav>
+    <button class="active" onclick="filter('all', this)">All</button>
+    <button onclick="filter('movie', this)">Movies</button>
+    <button onclick="filter('series', this)">Series</button>
+  </nav>
+  <div>
+    <button id="toggleGenres">Show Genres</button>
+    <div class="genres-filter" id="genresContainer" style="margin-top:10px;display:none;"></div>
+  </div>
+</header><div class="container">
+  <div class="section-title">Featured</div>
+  <div id="grid" class="grid"></div>
+</div><!-- Modal --><div id="modal">
+  <div id="modalContent">
+    <img id="modalImage" />
+    <div>
+      <h2 id="modalTitle"></h2>
+      <div id="modalRating"></div>
+      <p id="modalYear"></p>
+      <span id="modalType"></span>
+      <p id="modalDesc"></p>
+      <p id="modalGenres"></p>
+      <a id="watchButton" href="#" target="_blank">مشاهدة</a>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div><script>
+const modalRating = document.getElementById('modalRating');
 const grid = document.getElementById('grid');
 const modal = document.getElementById('modal');
 const modalImage = document.getElementById('modalImage');
@@ -265,6 +91,121 @@ const toggleGenresBtn = document.getElementById('toggleGenres');
 
 let currentFilter = 'all';
 let currentGenre = 'all';
+
+// Sample items (يمكن إضافة المزيد)
+let items = [
+  { title:"عالمها الخاص",
+  type:"series",
+  year:2019,
+  description:"تحاول شابة تعمل كأمينة لمتحف فنّي إخفاء هوايتها كمعجبة سرّية شديدة الشغف بأحد نجوم البوب الكوري عن مديرها الجديد، لكن حياتها الماضية تتكشّف.",
+  image:"https://i.mydramalist.com/AvL7vf.jpg",
+  watchLink:"https://topcinema.media/%d9%85%d8%b3%d9%84%d8%b3%d9%84-%d8%b9%d8%a7%d9%84%d9%85%d9%87%d8%a7-%d8%a7%d9%84%d8%ae%d8%a7%d8%b5-her-private-life-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-1-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/watch/",
+   rating : 4 ,
+
+  genres:["Romance","Drama","comedy"   , "korean"] },
+  
+  
+  { title:"What's Wrong with Secretary Kim",
+  type:"series",
+  year:2018,
+  description:"تدير عائلة لي يونغ شركة كبيرة يعمل فيها لي يونغ جون كنائب للرئيس. يُعرف بثرائه وذكائه ووسامته، ولكنه معروف أيضًا بغروره الشديد. تتخذ سكرتيرته كيم مي سو، التي تعمل لديهم منذ سنوات عديدة، قرارًا يصدمه....",
+    image:"https://wallpaperaccess.com/full/2615396.jpg" ,
+  watchLink:"https://wetv.vip/ar/play/4atd5mcgi2uwnvr/u0033d3i9b3-%D9%85%D8%A7_%D8%AE%D8%B7%D8%A8_%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D8%AA%D9%8A%D8%B1%D9%87_%D9%83%D9%8A%D9%85_%7C_%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9_1",
+   rating : 3.5 ,
+
+  genres:["Drama","Romance","comedy"    , "korean"] },
+  
+  
+    { title:"Because This Is My First Life",
+    type:"series",
+    year:2025,
+    description:"جي هو امرأة عزباء، تعمل مساعدةً في كتابة المسلسلات الدرامية. هي امرأة قوية وعازمة. لسوء الحظ، عليها أن تغادر منزلها وتبحث عن مكان آخر للعيش فيه. يساعدها أصدقاؤها في إيجاد شريكة سكن، وهذه الشريكة هي سي هي..",
+    image:"https://i.mydramalist.com/w06zkf.jpg" ,
+   watchLink:"https://www.arab-drama.me/watch-888/because-this-is-my-first-life/1",
+      rating : 2.5 ,
+
+   genres:["Drama","Romance","comedy"   , "korean"] },
+
+
+
+
+  
+  {  title:"ملكة الاحتيال",
+    type: "series",
+    year: 2023,
+    description: "المرأة الذكية التي تصبح محتالة بارعة. تتعاون مع جيمس وغو-هو، في فريق ثلاثي من المحتالين، لكشف المحتالين والاستيلاء على مكاسبهم غير المشروعة.",
+    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/confidence-q.jpeg",
+       watchLink: "https://ww1.asia2tv.pw/%D9%85%D9%84%D9%83%D8%A9-%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D9%84-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
+       rating : 3 ,
+
+       genres:["Crime", "Drama", "Thriller"     , "korean"] },
+  
+   {
+    title: "هل تتزوجني ؟",
+    type: "series",
+    year: 2025,
+    description: "لقصة حول رجل وامرأة يدخلان في زواج مزيف محفوف بالمخاطر لمدة 90 يومًا للفوز بمنزل فاخر",
+    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-hl-ttzwjny-would-you-marry-me.jpg",
+       watchLink: "https://ww1.asia2tv.pw/%D9%87%D9%84-%D8%AA%D8%AA%D8%B2%D9%88%D8%AC%D9%86%D9%8A%D8%9F-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
+     rating : 4 ,
+
+      genres: ["Romance", "Drama"  , "korean"]  },
+ 
+ 
+ 
+   {
+    title: "A Hundred Memories",
+    type: "series",
+    year: 2025,
+    description: "امرأتان تعملان كمضيفتين في الحافلات في كوريا خلال الثمانينيات تنشأ بينهما صداقة عميقة بينما تخوضان رحلة في الحب والأحلام والنمو الشخصي. إحداهما تكافح مع دوار الحركة لتتمكن من إعالة أسرتها، بينما الأخرى تبحث عن الهروب من ماضيها المضطرب.",
+    image: " https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-a-hundred-memories-my-t-dhkry.jpeg",
+       watchLink: "https://ww1.asia2tv.pw/%D9%85%D8%A6%D8%A9-%D8%B0%D9%83%D8%B1%D9%89-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" ,
+      rating : 1.5 ,
+
+      genres: ["Romance", "Drama" , "korean" ]  },
+
+ 
+ 
+  
+    {
+    title: "Buk-geuk-seong",
+    type: "series",
+    year: 2022,
+    description: "يقوم مونجو، السفير السابق، وسانهو، العميل السري، بالتحقيق في هجوم قد يزعزع استقرار شبه الجزيرة الكورية، ويكشفان عن مؤامرة خطيرة تهدد السلام والأمن الإقليميين..",
+    image: "https://etbilarabi.com/sites/default/files/inline-images/2025/mslsl-tempest-mslsl-al-asft-alkwryal.jpeg",
+   rating : 4.5 ,
+
+    genres: ["Action", "Historical", "Drama" , "korean"],
+    watchLink: "https://ww1.asia2tv.pw/%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%81%D8%A9-%D8%A7%D9%84%D8%AD%D9%84%D9%82%D8%A9-01/" 
+  },
+  
+  {
+    title: "Melo Movie",
+    type: "series",
+    year: 2024,
+    description: "يقع عاشق أفلام في غرام مُخرجة طامحة، وتشتعل بينهما علاقة رومانسية سرعان ما ينطفئ لهيبها... ولكن هل يجد هذا الحب سبيلًا إلى قلبيهما مجددًا عندما تتلاقى خطاهما مرة أخرى؟",
+    image: "https://scontent.fcai1-2.fna.fbcdn.net/v/t39.30808-6/493979256_1266112278852403_477336392164923332_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MF528Ny40DUQ7kNvwGWv3MJ&_nc_oc=AdmnrgJ0rTpfRQKOVtRcpKqJi54jZkpAiwWwhoGgANQbyvOf-hQYXeHmAPDgkdWCPlA&_nc_zt=23&_nc_ht=scontent.fcai1-2.fna&_nc_gid=1KSDIQ-U-c3FS6ygVpORHw&oh=00_AfnXrjEsjp-KXjEdDnC8QzCFeq_hbxOeKOkRJPXtw-Jhiw&oe=695AC094",
+    genres: ["Romance", "Drama" , "korean"],
+    rating : 3 ,
+
+    watchLink: "https://topcinema.media/%d9%85%d8%b3%d9%84%d8%b3%d9%84-%d8%ad%d8%a8-%d9%81%d9%8a-%d8%b9%d8%a7%d9%84%d9%85-%d8%a7%d9%84%d8%a7%d9%81%d9%84%d8%a7%d9%85-melo-movie-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-1-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/watch/" 
+ 
+  } ,
+ 
+  
+  
+   
+   
+  
+  
+  
+  
+  
+  
+  
+   
+   
+   ];
 
 // Generate Genre Buttons
 let allGenres = [];
@@ -284,7 +225,9 @@ function render(){
        .forEach(item => {
     const card = document.createElement('div');
     card.className='card';
-    card.innerHTML=`<img class="poster" src="${item.image}"/><div class="info"><div class="title">${item.title}</div><div class="meta"><span>${item.year}</span><span class="badge">${item.type}</span></div></div>`;
+    card.innerHTML=`<img class="poster" src="${item.image}"/><div class="info">
+<div class="title">${item.title}</div>${generateStars(item.rating || 0)}
+<div class="meta"><span>${item.year}</span><span class="badge">${item.type}</span></div></div>`;
     card.onclick = () => openModal(item);
     grid.appendChild(card);
   });
@@ -321,33 +264,31 @@ function openModal(item){
   modalYear.textContent = item.year;
   modalType.textContent = item.type;
   modalDesc.textContent = item.description;
-  if(item.genres && item.genres.length>0){
-    modalGenres.textContent = "Genres: " + item.genres.join(", ");
-  } else { modalGenres.textContent = ""; }
-  if(item.watchLink){ watchButton.style.display = 'inline-block'; watchButton.href = item.watchLink; }
-  else { watchButton.style.display = 'none'; }
+  modalGenres.textContent = item.genres ? "Genres: " + item.genres.join(", ") : "";
+  watchButton.style.display = item.watchLink ? 'inline-block':'none';
+  watchButton.href = item.watchLink || '#';
+  modalRating.innerHTML = generateStars(item.rating || 0);
 }
 
 function closeModal(){ modal.classList.remove('show'); }
 
+modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+
+function generateStars(rate){
+  let stars = '';
+  for(let i=1;i<=5;i++){
+    stars += i <= Math.floor(rate) ? '<span class="filled">★</span>' : '<span>★</span>';
+  }
+  return `<div class="rating">${stars}<span class="rating-number">${rate}</span></div>`;
+}
+
 render();
-</script>
-
-
-
-<!-- HTML -->
-<footer class="site-footer">
+</script><footer class="site-footer">
   <div class="footer-content">
     <p>© 2025 My Cinema. جميع الحقوق محفوظة.</p>
-  <p>Developed by: Ahmed Hany Sayedahmed AbdelWahab</p>
-    <ul class="footer-links">
-      
-    </ul>
+    <p>Developed by: Ahmed Hany Sayedahmed AbdelWahab</p>
+    <ul class="footer-links"></ul>
   </div>
-</footer>
-
-
-
-</body>
-
+</footer></body>
 </html>
