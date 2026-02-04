@@ -44,7 +44,29 @@ nav button.active, nav button:hover, .genres-filter button.active, .genres-filte
 
 /* Ratings */ .rating {display:flex;align-items:center;gap:4px;margin:6px 0;} .rating span {font-size:15px;color:#374151;} .rating .filled {color:#fbbf24;text-shadow:0 0 6px rgba(251,191,36,0.6);} .rating-number {font-size:13px;color:#9ca3af;margin-left:6px;}
 
-/* Responsive */ @media(max-width:600px){ header{padding:20px;} .container{padding:0 20px 30px;} .card .poster{height:220px;} #modalContent{grid-template-columns:1fr;max-height:95vh;} #modalContent img{height:220px;} .rating span{font-size:18px;} .rating-number{font-size:14px;} } </style>
+/* Responsive */ @media(max-width:600px){ header{padding:20px;} .container{padding:0 20px 30px;} .card .poster{height:220px;} #modalContent{grid-template-columns:1fr;max-height:95vh;} #modalContent img{height:220px;} .rating span{font-size:18px;} .rating-number{font-size:14px;} } 
+
+
+.logo {
+  display: flex;          /* يخلي العناصر جنب بعض */
+  align-items: center;    /* يضبطهم في نفس الخط */
+}
+
+.logo-img {
+  height: 60px;           /* حجم اللوجو */
+}
+
+.logo-text {
+  margin-left: 15px;      /* مسافة بين الصورة والنص */
+  font-size: 32px;        /* حجم النص كبير نسبيًا */
+  font-weight: bold;      /* يخلي النص سميك */
+  color: #fff;            /* لون النص (اختياري حسب الخلفية) */
+}
+
+
+  
+
+</style>
 
 </head>
 <body><header>
@@ -348,6 +370,7 @@ render();
   </div>
 </footer></body>
 </html>
+
 
 
 
